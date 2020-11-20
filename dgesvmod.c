@@ -44,30 +44,30 @@ int check_result(double *bref, double *b, int size) {
 
 void gauss(double *a, int size)
 {
-    int Col,C1,C2,A,cu;
+    int x,y,z,f,cu;
     float p,v;
 
-    for(Col=1;Col<=size;Col++){
+    for(x=1;x<=size;x++){
         cu=0;
-	A=Col;
+	f=x;
         while(cu==0){
-           if((a[A*size]>0.0000001)||((a[A*size]<-0.0000001))){
+           if((a[f*size]>0.0000001)||((a[f*size]<-0.0000001))){
                 cu=1;}
-            else A++;}
-        p=a[A*size];
-        for(C1=1;C1<=(size+1);C1++){
-            v=a[C1+Col*size];
-            a[C1+Col*size]=a[C1+Col*size];
-            a[C1+Col*size]=v/p;}
-        for(C2=Col+1;C2<=size;C2++){
-            v=a[C1+Col*size];
-            for(C1=Col;C1<=(size+1);C1++){
-                a[C1+Col*size]=a[C1+Col*size]-v*a[C1+Col*size];}
+            else f++;}
+        p=a[f*size];
+        for(y=1;y<=(size+1);y++){
+            v=a[y+x*size];
+            a[y+x*size]=a[y+x*size];
+            a[y+x*size]=v/p;}
+        for(z=x+1;z<=size;z++){
+            v=a[y+x*size];
+            for(y=x;y<=(size+1);y++){
+                a[y+x*size]=a[y+x*size]-v*a[y+x*size];}
     }
 }
-    for(Col=size;Col>=1;Col--) for(C1=(Col-1);C1>=1;C1--){
-        a[C1+Col*size+1]=a[C1+Col*size+1]-a[C1+Col*size]*a[C1+Col*size+1];
-        a[C1+Col*size]=0;
+        for(x=size;x>=1;x--) for(y=(x-1);y>=1;y--){
+        a[y+x*size+1]=a[y+x*size+1]-a[y+x*size]*a[y+x*size+1];
+        a[y+x*size]=0;
     }
 }
 
